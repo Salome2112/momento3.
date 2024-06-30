@@ -1,0 +1,38 @@
+##CREATE TABLE IF  NOT EXISTS  invoice (
+    nombre_cliente VARCHAR(255),
+    fecha_compra DATE,
+    nombre_producto VARCHAR(255),
+    cantidad INT
+);
+
+CREATE TABLE IF  NOT EXISTS event (
+    nombre_conferencia VARCHAR(255),
+    codigo_registro INT,
+    nombre_miembro VARCHAR(255)
+);
+INSERT INTO invoice (nombre_cliente, fecha_compra, nombre_producto, cantidad) VALUES 
+('Juan Pérez', '2024-01-01', 'Laptop', 2),
+('Ana Gómez', '2024-01-05', 'Smartphone', 1),
+('Carlos López', '2024-02-10', 'Tablet', 3),
+('María Sánchez', '2024-03-15', 'Monitor', 1),
+('Lucía Fernández', '2024-04-20', 'Teclado', 5);
+INSERT INTO event (nombre_conferencia, codigo_registro, nombre_miembro) VALUES 
+('Conferencia de Tecnología', 101, 'Juan Pérez'),
+('Conferencia de Medicina', 102, 'Ana Gómez'),
+('Conferencia de Educación', 103, 'Carlos López'),
+('Conferencia de Negocios', 104, 'María Sánchez'),
+('Conferencia de Ingeniería', 105, 'Lucía Fernández');
+
+
+##CREATE VIEW invoice AS
+SELECT 
+    c.nombre_cliente,
+    p.fecha_compra,
+    pr.nombre_producto,
+    p.cantidad
+FROM 
+    compras p
+JOIN 
+    clientes c ON p.id_cliente = c.id_cliente
+JOIN 
+    productos pr ON p.id_producto = pr.id_producto;
