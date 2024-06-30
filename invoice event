@@ -36,3 +36,15 @@ JOIN
     clientes c ON p.id_cliente = c.id_cliente
 JOIN 
     productos pr ON p.id_producto = pr.id_producto;
+INSERT INTO event (nombre_conferencia, codigo_registro, nombre_miembro)
+SELECT 
+    conf.nombre_conferencia,
+    reg.id_registro AS codigo_registro,
+    m.nombre_miembro
+FROM 
+    registros reg
+JOIN 
+    conferencias conf ON reg.id_conferencia = conf.id_conferencia
+JOIN 
+    miembros m ON reg.id_miembro = m.id_miembro;
+
